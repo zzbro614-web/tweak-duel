@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Tweak Duel digital store">
+<title>Tweak Duel — Store</title>
+<style>
+:root{
+  --bg:#07080c;
+  --panel:#0e1118;
+  --panel2:#121722;
+  --line:#202633;
+  --text:#f7f8fc;
+  --muted:#8f98aa;
+  --accent:#8b5cf6;
+  --accent2:#a78bfa;
+  --green:#47d587
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  color:var(--text);
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  background:
+    radial-gradient(700px 380px at 8% -5%,rgba(139,92,246,.20),transparent 65%),
+    radial-gradient(580px 340px at 95% 0%,rgba(92,66,194,.14),transparent 70%),
+    var(--bg);
+}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1120px,92%);margin:auto}
+
+.nav{
+  position:sticky;top:0;z-index:10;
+  background:rgba(7,8,12,.82);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,.06)
+}
+.navin{
+  height:74px;display:flex;align-items:center;justify-content:space-between
+}
+.brand{display:flex;align-items:center;gap:11px;font-weight:900;font-size:18px}
+.mark{
+  width:38px;height:38px;border-radius:12px;display:grid;place-items:center;
+  background:linear-gradient(145deg,#a06cff,#6339d0);
+  box-shadow:0 10px 32px rgba(139,92,246,.25)
+}
+.brand b{color:var(--accent2)}
+.links{display:flex;gap:26px;color:#aab2c2;font-size:13px}
+.links a:hover{color:#fff}
+.online{
+  border:1px solid #26302c;background:#0c1210;border-radius:999px;
+  padding:8px 11px;color:#c7d0ca;font-size:11px
+}
+.online i{
+  display:inline-block;width:7px;height:7px;background:var(--green);
+  border-radius:50%;margin-right:6px;box-shadow:0 0 9px rgba(71,213,135,.7)
+}
+
+.hero{text-align:center;padding:90px 0 58px}
+.eyebrow{
+  display:inline-block;padding:8px 12px;border-radius:999px;
+  border:1px solid #2c2441;background:#110e1b;color:#cdbfff;
+  font-size:11px;font-weight:700
+}
+.hero h1{
+  font-size:clamp(52px,8vw,90px);letter-spacing:-4px;line-height:.95;
+  margin:20px 0 18px
+}
+.hero h1 span{
+  background:linear-gradient(90deg,#fff,#b9a6ff);
+  background-clip:text;-webkit-background-clip:text;color:transparent
+}
+.hero p{
+  max-width:680px;margin:auto;color:var(--muted);line-height:1.75;font-size:15px
+}
+.actions{margin-top:28px;display:flex;gap:11px;justify-content:center;flex-wrap:wrap}
+.btn{
+  display:inline-block;border-radius:12px;padding:13px 18px;
+  font-weight:850;transition:.17s
+}
+.primary{
+  background:linear-gradient(135deg,#9e6cff,#7b49ed);
+  color:white;box-shadow:0 14px 32px rgba(139,92,246,.20)
+}
+.primary:hover{transform:translateY(-2px)}
+.secondary{
+  background:#10141c;color:#dce1eb;border:1px solid #272d38
+}
+.secondary:hover{border-color:#3a4251}
+
+.bar{
+  display:flex;justify-content:center;gap:10px;flex-wrap:wrap;
+  padding:16px 0;border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);color:#8f98aa;font-size:11px
+}
+.bar strong{color:#d7dbe4}
+
+.section{padding:58px 0}
+.heading{text-align:center;margin-bottom:25px}
+.heading h2{margin:0 0 7px;font-size:30px}
+.heading p{margin:0;color:var(--muted);font-size:13px}
+
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.product{
+  background:linear-gradient(180deg,#10131b,#0c0f15);
+  border:1px solid var(--line);border-radius:18px;padding:20px;
+  transition:.2s
+}
+.product:hover{
+  border-color:#3b3151;transform:translateY(-4px);
+  box-shadow:0 20px 45px rgba(0,0,0,.23)
+}
+.badge{
+  display:inline-flex;padding:6px 8px;border-radius:8px;
+  background:#171225;color:#bdaaff;font-size:10px;font-weight:800
+}
+.product h3{margin:14px 0 7px;font-size:19px}
+.product p{
+  margin:0;color:var(--muted);font-size:12px;
+  min-height:38px;line-height:1.55
+}
+.cost{font-size:30px;font-weight:950;margin:18px 0}
+.cost small{font-size:11px;color:var(--muted)}
+.product .btn{width:100%;text-align:center}
+
+.payments,.steps,.features{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:12px
+}
+.box{
+  background:var(--panel);border:1px solid var(--line);
+  border-radius:15px;padding:18px
+}
+.box h3{font-size:15px;margin:0 0 7px}
+.box p{font-size:12px;line-height:1.6;color:var(--muted);margin:0}
+.payname{font-weight:850}
+.paydesc{margin-top:5px!important;color:var(--muted);font-size:11px!important}
+.stepnum{
+  width:29px;height:29px;display:grid;place-items:center;
+  border-radius:9px;background:#18122a;color:#c2afff;
+  font-weight:900;font-size:11px;margin-bottom:13px
+}
+.ico{font-size:20px;margin-bottom:13px}
+
+.notice{
+  margin-top:17px;padding:14px 16px;border-radius:13px;
+  border:1px dashed #2c3240;background:#0b0e14;
+  color:#9ea7b8;font-size:12px;line-height:1.6
+}
+
+.faq{max-width:780px;margin:auto}
+.faq details{
+  background:var(--panel);border:1px solid var(--line);
+  border-radius:13px;margin:9px 0;padding:16px
+}
+.faq summary{cursor:pointer;font-weight:800;font-size:13px}
+.faq p{color:var(--muted);font-size:12px;line-height:1.65}
+
+footer{
+  border-top:1px solid var(--line);padding:26px 0;color:#697286;
+  font-size:11px;text-align:center;margin-top:20px
+}
+
+@media(max-width:900px){
+  .products,.payments,.steps,.features{grid-template-columns:1fr 1fr}
+  .links{display:none}
+}
+@media(max-width:560px){
+  .products,.payments,.steps,.features{grid-template-columns:1fr}
+  .hero{padding-top:65px}
+  .hero h1{letter-spacing:-2px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap navin">
+    <a class="brand" href="#">
+      <div class="mark">T</div>
+      <div>Tweak <b>Duel</b></div>
+    </a>
+    <div class="links">
+      <a href="#store">Store</a>
+      <a href="#payments">Payments</a>
+      <a href="#how">How It Works</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="online"><i></i>ONLINE</div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">DIGITAL STORE • TWEAK DUEL</div>
+    <h1>Simple. Fast. <span>Tweak Duel.</span></h1>
+    <p>
+      Browse the catalog, choose your product, and start an order.
+      This version is built with HTML and CSS only, so there is no JavaScript or executable code.
+    </p>
+    <div class="actions">
+      <a class="btn primary" href="#store">Browse Products</a>
+      <a class="btn secondary" href="#how">How It Works</a>
+    </div>
+  </div>
+</header>
+
+<div class="bar">
+  <span><strong>4</strong> products</span>
+  <span>•</span>
+  <span><strong>4</strong> payment options</span>
+  <span>•</span>
+  <span><strong>HTML/CSS</strong> only</span>
+</div>
+
+<main class="wrap">
+
+<section class="section" id="store">
+  <div class="heading">
+    <h2>Products</h2>
+    <p>Click any product to jump directly to the payment section.</p>
+  </div>
+
+  <div class="products">
+    <article class="product">
+      <div class="badge">AVAILABLE</div>
+      <h3>Duel</h3>
+      <p>Duel script.</p>
+      <div class="cost">$5 <small>USD</small></div>
+      <a class="btn primary" href="#payments">Buy Now</a>
+    </article>
+
+    <article class="product">
+      <div class="badge">AVAILABLE</div>
+      <h3>Lagger</h3>
+      <p>Lagger script.</p>
+      <div class="cost">$2 <small>USD</small></div>
+      <a class="btn primary" href="#payments">Buy Now</a>
+    </article>
+
+    <article class="product">
+      <div class="badge">AVAILABLE</div>
+      <h3>Speed Bypass</h3>
+      <p>Speed Bypass script.</p>
+      <div class="cost">$10 <small>USD</small></div>
+      <a class="btn primary" href="#payments">Buy Now</a>
+    </article>
+
+    <article class="product">
+      <div class="badge">AVAILABLE</div>
+      <h3>Ping Lagger</h3>
+      <p>Ping Lagger script.</p>
+      <div class="cost">$1 <small>USD</small></div>
+      <a class="btn primary" href="#payments">Buy Now</a>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="payments">
+  <div class="heading">
+    <h2>Payment Methods</h2>
+    <p>Choose your preferred payment option.</p>
+  </div>
+
+  <div class="payments">
+    <div class="box">
+      <div class="payname">Cash App</div>
+      <p class="paydesc">Manual payment option.</p>
+    </div>
+    <div class="box">
+      <div class="payname">LTC</div>
+      <p class="paydesc">Litecoin payment option.</p>
+    </div>
+    <div class="box">
+      <div class="payname">Apple Pay</div>
+      <p class="paydesc">Supported checkout.</p>
+    </div>
+    <div class="box">
+      <div class="payname">PayPal</div>
+      <p class="paydesc">Supported checkout.</p>
+    </div>
+  </div>
+
+  <div class="notice">
+    Payment details are intentionally not embedded in this static page.
+    Provide your current payment instructions to customers through your official order/support channel.
+  </div>
+</section>
+
+<section class="section" id="how">
+  <div class="heading">
+    <h2>How It Works</h2>
+    <p>A simple static order flow.</p>
+  </div>
+
+  <div class="steps">
+    <div class="box">
+      <div class="stepnum">01</div>
+      <h3>Choose a product</h3>
+      <p>Select the product and review the displayed USD price.</p>
+    </div>
+    <div class="box">
+      <div class="stepnum">02</div>
+      <h3>Choose payment</h3>
+      <p>Pick Cash App, LTC, Apple Pay, or PayPal from the payment section.</p>
+    </div>
+    <div class="box">
+      <div class="stepnum">03</div>
+      <h3>Complete payment</h3>
+      <p>Follow the payment instructions supplied through your official order channel.</p>
+    </div>
+    <div class="box">
+      <div class="stepnum">04</div>
+      <h3>Open a ticket</h3>
+      <p>Contact the seller through Discord to confirm the order and receive fulfillment.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="heading">
+    <h2>Store Features</h2>
+    <p>Designed to feel like a modern digital storefront without JavaScript.</p>
+  </div>
+
+  <div class="features">
+    <div class="box">
+      <div class="ico">⚡</div>
+      <h3>Fast navigation</h3>
+      <p>Native page links move customers between sections instantly.</p>
+    </div>
+    <div class="box">
+      <div class="ico">✓</div>
+      <h3>Clear pricing</h3>
+      <p>Every product has an easy-to-read price before purchase.</p>
+    </div>
+    <div class="box">
+      <div class="ico">◈</div>
+      <h3>Discord support</h3>
+      <p>Use your Discord ticket process for customer communication.</p>
+    </div>
+    <div class="box">
+      <div class="ico">⌁</div>
+      <h3>No JavaScript</h3>
+      <p>Only HTML and CSS are included in this version.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="heading">
+    <h2>FAQ</h2>
+    <p>Common questions.</p>
+  </div>
+
+  <div class="faq">
+    <details>
+      <summary>Is this website JavaScript-free?</summary>
+      <p>Yes. The page contains HTML and CSS only. Product buttons use normal links to page sections.</p>
+    </details>
+    <details>
+      <summary>Can customers buy directly on this version?</summary>
+      <p>This static version does not process payments. It provides the storefront and directs customers to your payment and Discord support process.</p>
+    </details>
+    <details>
+      <summary>Can I put this online?</summary>
+      <p>Yes. Upload the index.html file to a static web host such as GitHub Pages or another HTML hosting service.</p>
+    </details>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Tweak Duel • Digital Store</div>
+</footer>
+
+</body>
+</html>
